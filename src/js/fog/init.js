@@ -122,9 +122,10 @@ const Fog = require('./Fog').default;
       let loader1 = new THREE.FontLoader();
       loader1.load('./font/Lato.json',
           function(font) {
-            let x_pos = innerWidth/2.5;
+            let x_pos = innerWidth/3.0;
+            let y_pos = innerHeight/20.0;
             tathvaText.create_text(font);
-            tathvaText.obj.position.set(-x_pos,50,0);
+            tathvaText.obj.position.set(-x_pos,y_pos,0);
             scene.add(tathvaText.obj);
           }
           
