@@ -43,9 +43,9 @@ const Fog = require('./Fog').default;
   var mouseY = 0;
 
   camera.rotation.order = "YXZ";
-  document.addEventListener("touchstart",mouseMove,false);
-  document.addEventListener("touchmove",mouseMove,false);
-  document.addEventListener('touchend',mouseMove,false);
+  // document.addEventListener("touchstart",mouseMove,false);
+  // document.addEventListener("touchmove",mouseMove,false);
+  // document.addEventListener("touchend",mouseMove,false);
   document.addEventListener( "mousemove", mouseMove, false );
   function mouseMove( event ) {
     // console.log('helapsdkasdas');
