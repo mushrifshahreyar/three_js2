@@ -119,7 +119,6 @@ const Fog = require('./Fog').default;
         elems.map((e, i) => {
           e.position.set(0, -400, -15);
         });
-        nodeText.obj.position.z -= 17;
 
       });
 

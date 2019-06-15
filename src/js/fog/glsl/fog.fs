@@ -11,8 +11,8 @@ void main() {
   vec2 p = vUv * 2.0 - 1.0;
 
   vec4 texColor = texture2D(tex, vUv);
-  vec3 color = (texColor.rgb - vBlink * length(p) * 0.8) * vColor;
-  float opacity = texColor.a * 0.36;
+  vec3 color = (texColor.rgb - vBlink * length(p) * 0.2) * vColor;
+  float opacity = texColor.a*texColor.a/0.2;
 
   gl_FragColor = vec4(color, opacity);
 }

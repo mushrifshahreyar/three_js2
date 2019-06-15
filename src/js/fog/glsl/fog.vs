@@ -13,7 +13,7 @@ varying vec2 vUv;
 varying vec3 vColor;
 varying float vBlink;
 
-const float duration = 200.0;
+const float duration = 500.0;
 
 #pragma glslify: calcRotateMat4Z = require(glsl-matrix/calcRotateMat4Z);
 #pragma glslify: convertHsvToRgb = require(glsl-util/convertHsvToRgb)
@@ -25,13 +25,17 @@ void main(void) {
   vec3 rotatePosition = (rotateMat * vec4(position, 1.0)).xyz;
 
   vec3 moveRise = vec3(
-    (now * 2.0 - 1.0) * (2500.0 - (delay * 2.0 - 1.0) * 2000.0),
-    (now * 2.0 - 1.0) * 2000.0,
+    (now * 2.0 - 1.0) * (5000.0 - (delay * 2.0 - 1.0) * 2500.0),
+    (now * 2.0 - 1.0) * 1000.0,
     sin(radians(time * 50.0 + delay + length(position))) * 30.0
     );
-  vec3 updatePosition = instancePosition + moveRise + rotatePosition;
+  vec3 updatePosition = instancePosition + moveRise+ rotatePosition;
 
-  vec3 hsv = vec3((sin(time)*0.01) + 90.0, 0.9 + sin(time)*0.1 , 0.5);
+  float hue_time = sin(time+position.x/10.0)*0.05;
+  float hue = 0.6 + instancePosition.x/5000.0;
+  // 0.6: blue
+
+  vec3 hsv = vec3(hue, 1.0, 1.0);
   vec3 rgb = convertHsvToRgb(hsv);
   float blink = (sin(radians(now * 360.0 * 20.0)) + 1.0) * 0.88;
 
