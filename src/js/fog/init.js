@@ -107,7 +107,7 @@ const Fog = require('./Fog').default;
       loader1.load('./font/Lato.json',
           function(font) {
             tathvaText.create_text(font);
-            tathvaText.obj.position.set(-355,250,0);
+            tathvaText.obj.position.set(-385,250,0);
             scene.add(tathvaText.obj);
           }
           
