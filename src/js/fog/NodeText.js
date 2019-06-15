@@ -35,7 +35,7 @@ export default class Node {
     // Define Geometry
     const optTextGeometry = {
       font: font,
-      size: innerWidth/30,
+      size: innerWidth/33,
       height: 0,
       curveSegments: 1,
     };
