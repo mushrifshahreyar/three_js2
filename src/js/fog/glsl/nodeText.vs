@@ -61,7 +61,7 @@ void main(void) {
   vec3 shake = (rotateMat * vec4(vec3(0.0, sin(now) * 5.0, 0.0), 1.0)).xyz;
 
   // coordinate transformation
-  vec4 mvPosition = modelViewMatrix * vec4(mixPosition + shake*0.2, 1.0);
+  vec4 mvPosition = modelViewMatrix * vec4(mixPosition, 1.0);
 
   vPosition = mixPosition;
   vUv = uv;

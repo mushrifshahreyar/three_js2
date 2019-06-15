@@ -98,28 +98,29 @@ const Fog = require('./Fog').default;
   // Initialize
   //
   const init = () => {
+    let light = new THREE.PointLight(0xffffff, 0.15);
+    light.position.z = 100;
+    light.rotateY(10.0);
+    scene.add(light);
+
     loadTexs(texsSrc, (loadedTexs) => {
       fog.createObj(loadedTexs.fog);
 
       scene.add(fog.obj);
 
-      renderer.setClearColor(0x111111, 1.0);
+      renderer.setClearColor(0xffffff, 1.0);
       camera.position.set(0, 0, 1000);
       camera.lookAt(new THREE.Vector3());
       clock.start();
 
       loader.load('./font/Lato.json', (font) => {
         nodeText.createObj(font);
-        bg.createObj();
   
-        scene.add(nodeText.obj);
-        scene.add(nodeText.objWire);
-        scene.add(nodeText.objPoints);
-  
-
-        let elems = [nodeText.obj, nodeText.objWire, nodeText.objPoints];
+        let elems = [nodeText.obj];
         elems.map((e, i) => {
           e.position.set(-innerWidth/2.2, -100, -15);
+          e.rotateY(0.1);
+          scene.add(e)
         });
 
       });
@@ -130,12 +131,14 @@ const Fog = require('./Fog').default;
             let x_pos = innerWidth/1.2;
             let y_pos = innerHeight/20.0;
             tathvaText.create_text(font);
-            tathvaText.obj.position.set(-x_pos,y_pos,0);
+            tathvaText.obj.position.set(-x_pos,y_pos,20.0);
+            tathvaText.obj.rotateY(0.1);
             scene.add(tathvaText.obj);
 
             descText.create_text(font);
+            descText.obj.rotateY(-0.1);
             scene.add(descText.obj);
-            descText.obj.position.x = innerWidth/3.5 - 80.0;
+            descText.obj.position.x = innerWidth/3.5 - 150.0;
             descText.obj.position.y = innerHeight/3.5 - 10.0;
           }
           

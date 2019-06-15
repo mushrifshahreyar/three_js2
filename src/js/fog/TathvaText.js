@@ -10,7 +10,7 @@ export default class TathvaText {
             bevelEnabled: false,
             curveSegments: 10    
         });
-        this.obj = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial(0xffffff));
+        this.obj = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial(0xffffff));
 
     }
 }

@@ -3,7 +3,7 @@ const MathEx = require('js-util/MathEx');
 
 export default class Node {
   constructor() {
-    this.durationTransform = 1;
+    this.durationTransform = 0.5;
     this.uniforms = {
       time: {
         type: 'f',
@@ -11,7 +11,7 @@ export default class Node {
       },
       timeTransform: {
         type: 'f',
-        value: this.durationTransform
+        value: this.durationTransform*2
       },
       durationTransform: {
         type: 'f',

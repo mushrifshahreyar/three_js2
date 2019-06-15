@@ -5,9 +5,9 @@ export default class TathvaText {
     create_text(font) {
         var geometry = new THREE.TextGeometry(
             "What started out as the brainchild\n"+
-            "of a few curious minds,\n" +
-            "is now an emotion carried by \n"+
-            "those in and out of the college.\n" +
+            "of a few curious minds, is now an\n" +
+            "emotion carried by those in and out\n"+
+            "of the college.\n" +
             "Designate yourself as the supporter \n"+
             "of this techno-managerial festival", {
                 font: font,
@@ -16,7 +16,7 @@ export default class TathvaText {
                 bevelEnabled: false,
                 curveSegments: 1
             });
-        this.obj = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial(0xffffff));
+        this.obj = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial(0x111111));
 
     }
 }
