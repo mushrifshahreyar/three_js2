@@ -37,7 +37,23 @@ const Fog = require('./Fog').default;
   const nodeText = new NodeText();
   const bg = new BackgroundSphere();
  
+  //======Camera movement==========
+  var scale = 5;
+  var mouseX = 0;
+  var mouseY = 0;
 
+  camera.rotation.order = "YXZ";
+
+  document.addEventListener( "mousemove", mouseMove, false );
+  function mouseMove( event ) {
+    // console.log('helapsdkasdas');
+    mouseX = - ( event.clientX / renderer.domElement.clientWidth ) * 2 + 1;
+    mouseY = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+    // console.log(camera.rotation.x + " " + camera.rotation.y);
+    // console.log(camera.rotation.x);
+    camera.rotation.x = mouseY / scale;
+    camera.rotation.y = mouseX / scale;
+  }
   // ==========
   // Define functions
   //
@@ -107,7 +123,7 @@ const Fog = require('./Fog').default;
       loader1.load('./font/Lato.json',
           function(font) {
             tathvaText.create_text(font);
-            tathvaText.obj.position.set(-385,250,0);
+            tathvaText.obj.position.set(-650,50,0);
             scene.add(tathvaText.obj);
           }
           
