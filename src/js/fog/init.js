@@ -106,7 +106,7 @@ const Fog = require('./Fog').default;
       camera.lookAt(new THREE.Vector3());
       clock.start();
 
-      loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', (font) => {
+      loader.load('./font/Lato.json', (font) => {
         nodeText.createObj(font);
         bg.createObj();
   
@@ -117,7 +117,7 @@ const Fog = require('./Fog').default;
 
         let elems = [nodeText.obj, nodeText.objWire, nodeText.objPoints];
         elems.map((e, i) => {
-          e.position.set(0, -400, -15);
+          e.position.set(-innerWidth/2.2, -100, -15);
         });
 
       });
