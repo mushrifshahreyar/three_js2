@@ -30,7 +30,7 @@ const Fog = require('./Fog').default;
   // Define unique variables
   //
   const texsSrc = {
-    fog: '../img/fog/fog.png'
+    fog: './img/fog/fog.png'
   };
   const fog = new Fog();
 
