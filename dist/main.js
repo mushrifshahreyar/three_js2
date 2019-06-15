@@ -224,7 +224,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"precision highp float;\\n#define GLSLIFY 1\\n\\nvarying vec3 vPosition;\\nvarying vec2 vUv;\\nvarying float vOpacity;\\n\\nvoid main() {\\n  gl_FragColor = vec4(vec3(1.0), vOpacity*0.3);\\n}\\n\");\n\n//# sourceURL=webpack:///./src/js/fog/glsl/nodeText.fs?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"precision highp float;\\n#define GLSLIFY 1\\n\\nvarying vec3 vPosition;\\nvarying vec2 vUv;\\nvarying float vOpacity;\\n\\nvoid main() {\\n  gl_FragColor = vec4(vec3(1.0), vOpacity*0.4);\\n}\\n\");\n\n//# sourceURL=webpack:///./src/js/fog/glsl/nodeText.fs?");
 
 /***/ }),
 
@@ -272,7 +272,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"precision highp float;\\n#define GLSLIFY 1\\n\\nvarying vec3 vPosition;\\nvarying vec2 vUv;\\nvarying float vOpacity;\\n\\nvoid main() {\\n  gl_FragColor = vec4(vec3(1.0), vOpacity);\\n}\\n\");\n\n//# sourceURL=webpack:///./src/js/fog/glsl/nodeTextWire.fs?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"precision highp float;\\n#define GLSLIFY 1\\n\\nvarying vec3 vPosition;\\nvarying vec2 vUv;\\nvarying float vOpacity;\\n\\nvoid main() {\\n  gl_FragColor = vec4(vec3(1.0), vOpacity*0.8);\\n}\\n\");\n\n//# sourceURL=webpack:///./src/js/fog/glsl/nodeTextWire.fs?");
 
 /***/ }),
 
