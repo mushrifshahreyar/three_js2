@@ -98,9 +98,9 @@ const Fog = require('./Fog').default;
   // Initialize
   //
   const init = () => {
-    let light = new THREE.PointLight(0xffffff, 0.4);
-    light.position.z = 100;
-    light.rotateY(10.0);
+    let light = new THREE.PointLight(0xffffff, 0.2);
+    light.position.z = 1000;
+    light.position.x = 800;
     scene.add(light);
 
     loadTexs(texsSrc, (loadedTexs) => {
