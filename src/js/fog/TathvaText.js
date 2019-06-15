@@ -1,7 +1,7 @@
 const THREE = require('three');
 export default class TathvaText {
     create_text(font) {
-        var geometry = new THREE.TextGeometry('TATHVA19', {
+        var geometry = new THREE.TextGeometry("TATHVA '19", {
             font : font,
             size : 100,
             height:10,
