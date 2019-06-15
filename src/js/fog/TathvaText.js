@@ -5,7 +5,7 @@ export default class TathvaText {
     create_text(font) {
         var geometry = new THREE.TextGeometry("TATHVA '19", {
             font : font,
-            size : screen.width * 0.09,
+            size : innerWidth * 0.099999999999999999999999,
             height:10,
             bevelEnabled: false,
             curveSegments: 10    
