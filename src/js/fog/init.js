@@ -21,7 +21,7 @@ const Fog = require('./Fog').default;
   const clock = new THREE.Clock();
   const loader = new THREE.FontLoader();
 
-
+  // const composer = new THREE.EffectComposer(renderer);
 
   camera.far = 50000;
   camera.setFocalLength(24);
@@ -91,10 +91,24 @@ const Fog = require('./Fog').default;
       nodeText.transform();
     });
   };
+  // function bloom_effect() {
+  //   // composer = new THREE.EffectComposer(renderer);
+  //   composer.addPass(new THREE.RenderPass(scene,camera));
+  //   const bloomPass = new THREE.BloomPass(1,25,4,250);
+  //   composer.addPass(bloomPass);
+  //   const filmPass = new THREE.FilmPass( 0.35,0.025,648,false);
+  //   composer.addPass(filmPass);
+     
+  // }
 
   // ==========
   // Initialize
   //
+
+  //=========new====
+  
+//=================
+
   const init = () => {
     loadTexs(texsSrc, (loadedTexs) => {
       fog.createObj(loadedTexs.fog);
@@ -135,11 +149,14 @@ const Fog = require('./Fog').default;
           
       );
       
+      //==================
+          // composer.render();
 
-
+      //====================
       on();
       resizeWindow();
       renderLoop();
+      // bloom_effect();
     });
   }
   init();
