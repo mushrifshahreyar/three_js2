@@ -108,7 +108,7 @@ const Fog = require('./Fog').default;
 
       scene.add(fog.obj);
 
-      renderer.setClearColor(0xffffff, 1.0);
+      renderer.setClearColor(0xcceeff, 1.0);
       camera.position.set(0, 0, 1000);
       camera.lookAt(new THREE.Vector3());
       clock.start();
