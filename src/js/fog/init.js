@@ -3,6 +3,7 @@ const debounce = require('js-util/debounce');
 const NodeText = require('./NodeText').default;
 const BackgroundSphere = require('./BackgroundSphere').default;
 const TathvaText = require('./TathvaText').default;
+const DescText = require('./DescText').default;
 const loadTexs = require('../loadTexs').default;
 const Fog = require('./Fog').default;
 
@@ -34,6 +35,7 @@ const Fog = require('./Fog').default;
   };
   const fog = new Fog();
   const tathvaText = new TathvaText();
+  const descText = new DescText();
   const nodeText = new NodeText();
   const bg = new BackgroundSphere();
  
@@ -130,6 +132,11 @@ const Fog = require('./Fog').default;
             tathvaText.create_text(font);
             tathvaText.obj.position.set(-x_pos,y_pos,0);
             scene.add(tathvaText.obj);
+
+            descText.create_text(font);
+            scene.add(descText.obj);
+            descText.obj.position.x = innerWidth/3.5 - 80.0;
+            descText.obj.position.y = innerHeight/3.5 - 10.0;
           }
           
       );
