@@ -113,9 +113,9 @@ const Fog = require('./Fog').default;
 
         let elems = [nodeText.obj, nodeText.objWire, nodeText.objPoints];
         elems.map((e, i) => {
-          e.position.set(0, -400, 0);
+          e.position.set(0, -400, -15);
         });
-        nodeText.obj.position.z -= 10;
+        nodeText.obj.position.z -= 20;
 
       });
 
