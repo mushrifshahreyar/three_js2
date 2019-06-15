@@ -39,7 +39,7 @@ export default class Fog {
     for ( var i = 0, ul = this.num; i < ul; i++ ) {
       let x = (Math.random() - 0.5)*500;
       let y = randn_bm()*50;
-      let z = randn_bm()*10-0.0;
+      let z = randn_bm()*10-100.0;
 
       console.log("i="+i+": "+x+","+y);
       instancePositions.setXYZ(

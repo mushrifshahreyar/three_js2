@@ -98,7 +98,7 @@ const Fog = require('./Fog').default;
   // Initialize
   //
   const init = () => {
-    let light = new THREE.PointLight(0xffffff, 0.15);
+    let light = new THREE.PointLight(0xffffff, 0.4);
     light.position.z = 100;
     light.rotateY(10.0);
     scene.add(light);
