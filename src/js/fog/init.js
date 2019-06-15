@@ -43,8 +43,9 @@ const Fog = require('./Fog').default;
   var mouseY = 0;
 
   camera.rotation.order = "YXZ";
-  document.addEventListener("touchstart",positionHandler,false);
-  document.addEventListener("touchmove",positionHandler,false);
+  document.addEventListener("touchstart",mouseMove,false);
+  document.addEventListener("touchmove",mouseMove,false);
+  document.addEventListener('touchend',mouseMove,false);
   document.addEventListener( "mousemove", mouseMove, false );
   function mouseMove( event ) {
     // console.log('helapsdkasdas');
@@ -56,17 +57,7 @@ const Fog = require('./Fog').default;
     camera.rotation.x = mouseY / scale;
     camera.rotation.y = mouseX / scale;
   }
-  var posX, posY;
-function positionHandler(e) {
-if ((e.clientX)&&(e.clientY)) {
-posX = e.clientX;
-posY = e.clientY;
-} else if (e.targetTouches) {
-posX = e.targetTouches[0].clientX;
-posY = e.targetTouches[0].clientY;
-e.preventDefault();
-}
-}
+  
   // ==========
   // Define functions
   //
