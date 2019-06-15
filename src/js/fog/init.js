@@ -44,13 +44,14 @@ const Fog = require('./Fog').default;
 
   camera.rotation.order = "YXZ";
 
-  document.addEventListener( "mousemove", mouseMove, false );
+  document.addEventListener( "touchmove", mouseMove, false );
   function mouseMove( event ) {
     // console.log('helapsdkasdas');
     mouseX = - ( event.clientX / renderer.domElement.clientWidth ) * 2 + 1;
     mouseY = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
     // console.log(camera.rotation.x + " " + camera.rotation.y);
     // console.log(camera.rotation.x);
+    event.preventDefault();
     camera.rotation.x = mouseY / scale;
     camera.rotation.y = mouseX / scale;
   }
