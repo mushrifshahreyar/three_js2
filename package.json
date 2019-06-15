@@ -1,0 +1,30 @@
+{
+  "name": "three_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "gulp": "^4.0.2",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-stream": "^5.2.1"
+  },
+  "dependencies": {
+    "glsl-easings": "^1.0.0",
+    "glsl-matrix": "git://github.com/ykob/glsl-matrix.git",
+    "glsl-util": "git://github.com/ykob/glsl-util.git",
+    "glslify-import-loader": "^0.1.2",
+    "glslify-loader": "^2.0.0",
+    "js-util": "git://github.com/ykob/js-util.git",
+    "raw-loader": "^3.0.0",
+    "three": "^0.105.2"
+  }
+}
