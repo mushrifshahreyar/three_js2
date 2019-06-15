@@ -2,7 +2,7 @@ const THREE = require('three');
 const debounce = require('js-util/debounce');
 const NodeText = require('./NodeText').default;
 const BackgroundSphere = require('./BackgroundSphere').default;
-
+const TathvaText = require('./TathvaText').default;
 const loadTexs = require('../loadTexs').default;
 const Fog = require('./Fog').default;
 
@@ -33,7 +33,7 @@ const Fog = require('./Fog').default;
     fog: './img/fog/fog.png'
   };
   const fog = new Fog();
-
+  const tathvaText = new TathvaText();
   const nodeText = new NodeText();
   const bg = new BackgroundSphere();
  
@@ -102,6 +102,17 @@ const Fog = require('./Fog').default;
         nodeText.obj.position.z -= 10;
 
       });
+
+      let loader1 = new THREE.FontLoader();
+      loader1.load('./font/Lato.json',
+          function(font) {
+            tathvaText.create_text(font);
+            tathvaText.obj.position.set(-355,250,0);
+            scene.add(tathvaText.obj);
+          }
+          
+      );
+      
 
 
       on();
