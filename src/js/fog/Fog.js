@@ -1,6 +1,14 @@
 const THREE = require('three');
 const MathEx = require('js-util/MathEx');
 
+// Standard Normal variate using Box-Muller transform.
+function randn_bm() {
+    var u = 0, v = 0;
+    while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+    while(v === 0) v = Math.random();
+    return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+}
+
 export default class Fog {
   constructor() {
     this.uniforms = {
@@ -13,13 +21,13 @@ export default class Fog {
         value: null
       }
     };
-    this.num = 50;
+    this.num = 5;
     this.obj;
   }
   createObj(tex) {
     // Define Geometries
     const geometry = new THREE.InstancedBufferGeometry();
-    const baseGeometry = new THREE.PlaneBufferGeometry(1100, 1100, 20, 20);
+    const baseGeometry = new THREE.PlaneBufferGeometry(2100, 2100, 20, 20);
 
     // Copy attributes of the base Geometry to the instancing Geometry
     geometry.copy(baseGeometry);
@@ -29,14 +37,16 @@ export default class Fog {
     const delays = new THREE.InstancedBufferAttribute(new Float32Array(this.num), 1);
     const rotates = new THREE.InstancedBufferAttribute(new Float32Array(this.num), 1);
     for ( var i = 0, ul = this.num; i < ul; i++ ) {
+      let x = (Math.random() - 0.5)*500;
+      let y = randn_bm()*50;
+      let z = randn_bm()*10-100.0;
+
       instancePositions.setXYZ(
         i,
-        (Math.random() * 2 - 1) * 850,
-        0,
-        (Math.random() * 2 - 1) * 300,
+        x, y, z
       );
-      delays.setXYZ(i, Math.random());
-      rotates.setXYZ(i, Math.random() * 2 + 1);
+      delays.setXYZ(i, randn_bm() + 0.5);
+      rotates.setXYZ(i, randn_bm() + 1);
     }
     geometry.addAttribute('instancePosition', instancePositions);
     geometry.addAttribute('delay', delays);
@@ -49,12 +59,13 @@ export default class Fog {
       fragmentShader: require('./glsl/fog.fs').default,
       transparent: true,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending
     });
     this.uniforms.tex.value = tex;
 
     // Create Object3D
     this.obj = new THREE.Mesh(geometry, material);
+    this.obj.position.setZ(-50.0);
   }
   render(time) {
     this.uniforms.time.value += time;

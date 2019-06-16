@@ -2,15 +2,35 @@ import { log } from 'three';
 
 const THREE = require('three');
 export default class TathvaText {
+    constructor() {
+        this.uniforms = {
+            time: {
+                type: 'f',
+                value: 0
+            }
+        };
+    }
     create_text(font) {
         var geometry = new THREE.TextGeometry("TATHVA '19", {
-            font : font,
-            size : innerWidth * 0.07,
-            height:10,
+            font: font,
+            size: innerWidth * 0.10,
+            height: 10,
             bevelEnabled: false,
-            curveSegments: 10    
+            curveSegments: 10
         });
-        this.obj = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial(0xffffff));
 
+        var material = new THREE.ShaderMaterial({
+            uniforms: this.uniforms,
+            vertexShader: require('./glsl/tathvaText.vs').default,
+            fragmentShader: require('./glsl/tathvaText.fs').default,
+            transparent: true,
+            depthWrite: false,
+            blending: THREE.NormalBlending
+        });
+        this.obj = new THREE.Mesh(geometry, material);
+
+    }
+    render(time) {
+        this.uniforms.time.value += time;
     }
 }
