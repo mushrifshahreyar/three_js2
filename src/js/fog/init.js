@@ -88,6 +88,7 @@ const resizeWindow = () => {
   canvas.width = resolution.x;
   canvas.height = resolution.y;
   resizeCamera();
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(resolution.x, resolution.y);
 };
 const on = () => {
@@ -121,7 +122,6 @@ const init = () => {
     clock.start();
 
     document.addEventListener('mousemove', mouseMove, false);
-    document.addEventListener('touchmove', mouseMove, false);
     loader.load('./font/Lato.json', (font) => {
       nodeText.createObj(font);
 
