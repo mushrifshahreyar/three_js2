@@ -16,7 +16,13 @@ export default class TathvaText {
                 bevelEnabled: false,
                 curveSegments: 1
             });
-        this.obj = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial(0x999999));
+        this.obj = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial(0xffffff));
 
+        var plane = new THREE.PlaneGeometry(1100, 700, 1, 1);
+        this.bgObj = new THREE.Mesh(plane, new THREE.MeshBasicMaterial( {
+            color: 0x07608c,
+            transparent: true,
+            opacity: 0.8
+        }));
     }
 }

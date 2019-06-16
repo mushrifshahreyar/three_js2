@@ -137,9 +137,15 @@ const Fog = require('./Fog').default;
 
             descText.create_text(font);
             descText.obj.rotateY(-0.1);
+            descText.bgObj.rotateY(-0.1);
             scene.add(descText.obj);
+            scene.add(descText.bgObj);
             descText.obj.position.x = innerWidth/3.5 - 150.0;
             descText.obj.position.y = innerHeight/3.5 - 10.0;
+            descText.obj.position.z = 2;
+            descText.bgObj.position.x = innerWidth/2 + 20;
+            descText.bgObj.position.y = innerHeight/4.5 - 150.0;
+            descText.bgObj.position.z = 1;
           }
           
       );
