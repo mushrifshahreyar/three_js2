@@ -85,7 +85,6 @@ const resizeWindow = () => {
   canvas.height = resolution.y;
   resizeCamera();
   renderer.setSize(resolution.x, resolution.y);
-  camera.translateZ(resolution.y/5.0);
 };
 const on = () => {
   window.addEventListener('resize', debounce(resizeWindow, 1000));
