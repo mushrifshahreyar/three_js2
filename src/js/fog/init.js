@@ -67,6 +67,7 @@ const Fog = require('./Fog').default;
     const time = clock.getDelta();
     fog.render(time);
     nodeText.render(time);
+    tathvaText.render(time);
     renderer.render(scene, camera);
   };
   const renderLoop = () => {
@@ -101,14 +102,14 @@ const Fog = require('./Fog').default;
     let light = new THREE.PointLight(0xffffff, 0.2);
     light.position.z = 1000;
     light.position.x = 800;
-    scene.add(light);
+    // scene.add(light);
 
     loadTexs(texsSrc, (loadedTexs) => {
       fog.createObj(loadedTexs.fog);
 
       scene.add(fog.obj);
 
-      renderer.setClearColor(0xcceeff, 1.0);
+      renderer.setClearColor(0xffeecc, 1.0);
       camera.position.set(0, 0, 1000);
       camera.lookAt(new THREE.Vector3());
       clock.start();
@@ -139,7 +140,7 @@ const Fog = require('./Fog').default;
             descText.obj.rotateY(-0.1);
             descText.bgObj.rotateY(-0.1);
             scene.add(descText.obj);
-            scene.add(descText.bgObj);
+            // scene.add(descText.bgObj);
             descText.obj.position.x = innerWidth/3.5 - 150.0;
             descText.obj.position.y = innerHeight/3.5 - 10.0;
             descText.obj.position.z = 2;
