@@ -22,10 +22,9 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera();
 const clock = new THREE.Clock();
 const loader = new THREE.FontLoader();
-const controls = new THREE.OrbitControls(camera);
 
 camera.far = 50000;
-camera.setFocalLength(24);
+camera.setFocalLength(27);
 
 // ==========
 // Define unique variables
@@ -45,15 +44,17 @@ var mouseX = 0;
 var mouseY = 0;
 
 camera.rotation.order = "YXZ";
-// document.addEventListener("touchstart",mouseMove,false);
-// document.addEventListener("touchmove",mouseMove,false);
-// document.addEventListener("touchend",mouseMove,false);
-// document.addEventListener( "mousemove", mouseMove, false );
 function mouseMove(event) {
-  mouseX = - (event.clientX / renderer.domElement.clientWidth) * 2 + 1;
-  mouseY = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+  if(event.clientX) {
+    mouseX = - (event.clientX / renderer.domElement.clientWidth) * 2 + 1;
+    mouseY = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+  }
+  if(event.touches) {
+    let touch = event.touches.item(0);
+    mouseX = - (touch.clientX / renderer.domElement.clientWidth) * 2 + 1;
+    mouseY = - (touch.clientY / renderer.domElement.clientHeight) * 2 + 1;
+  }
   // console.log(camera.rotation.x + " " + camera.rotation.y);
-  event.preventDefault();
   camera.rotation.x = mouseY / scale;
   camera.rotation.y = mouseX / scale;
 }
@@ -83,6 +84,7 @@ const resizeWindow = () => {
   canvas.height = resolution.y;
   resizeCamera();
   renderer.setSize(resolution.x, resolution.y);
+  camera.translateZ(resolution.y/5.0);
 };
 const on = () => {
   window.addEventListener('resize', debounce(resizeWindow, 1000));
@@ -115,7 +117,7 @@ const init = () => {
     clock.start();
 
     document.addEventListener('mousemove', mouseMove, false);
-    canvas.addEventListener('touchmove', mouseMove, false);
+    document.addEventListener('touchmove', mouseMove, false);
     loader.load('./font/Lato.json', (font) => {
       nodeText.createObj(font);
 
@@ -130,8 +132,12 @@ const init = () => {
           let y = - innerHeight * 0.2;
           e.position.set(x, y, -15)
         } else {
+          var vFOV = THREE.Math.degToRad( camera.fov ); // convert vertical fov to radians
+          var dist = distanceVector(camera.position, e.position);
+          var height = 2 * Math.tan( vFOV / 2 ) * dist; // visible height
+
           var box = new THREE.Box3().setFromObject(e);
-          let y = - innerHeight * 0.6;
+          let y = - height*0.3;
           e.position.set(-box.getCenter().x, y, -15)
         }
       });
@@ -159,16 +165,24 @@ const init = () => {
           descText.obj.position.z = 2;
         } else {
           {
+            var vFOV = THREE.Math.degToRad( camera.fov ); // convert vertical fov to radians
+            var dist = distanceVector(camera.position, tathvaText.obj.position);
+            var height = 2 * Math.tan( vFOV / 2 ) * dist; // visible height
+
             var tathvaTextBox = new THREE.Box3().setFromObject(tathvaText.obj);
-            let x_pos = 0.0 + tathvaTextBox.getCenter().x;
-            let y_pos = 0.0 + tathvaTextBox.getCenter().y + innerHeight * 0.30;
-            tathvaText.obj.position.set(-x_pos, y_pos, 20.0);
+            let x_pos = 0.0 - tathvaTextBox.getCenter().x;
+            let y_pos = 0.0 - tathvaTextBox.getCenter().y + height * 0.25;
+            tathvaText.obj.position.set(x_pos, y_pos, 20.0);
           }
           {
+            var vFOV = THREE.Math.degToRad( camera.fov ); // convert vertical fov to radians
+            var dist = distanceVector(camera.position, descText.obj.position);
+            var height = 2 * Math.tan( vFOV / 2 ) * dist; // visible height
+
             var descTextBox = new THREE.Box3().setFromObject(descText.obj);
-            let x_pos = 0.0 + descTextBox.getCenter().x;
-            let y_pos = 0.0 + descTextBox.getCenter().y + innerHeight * 0.30;
-            descText.obj.position.set(-x_pos, y_pos, 20.0);
+            let x_pos = 0.0 - descTextBox.getCenter().x;
+            let y_pos = 0.0 - descTextBox.getCenter().y + height * 0.03;
+            descText.obj.position.set(x_pos, y_pos, 20.0);
           }
         }
       }
@@ -180,5 +194,15 @@ const init = () => {
     renderLoop();
   });
 }
+
+function distanceVector( v1, v2 )
+{
+    var dx = v1.x - v2.x;
+    var dy = v1.y - v2.y;
+    var dz = v1.z - v2.z;
+
+    return Math.sqrt( dx * dx + dy * dy + dz * dz );
+}
+
 init();
 
