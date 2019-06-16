@@ -1,4 +1,5 @@
 const THREE = require('three');
+const OrbitControls = require('three-orbitcontrols')
 const debounce = require('js-util/debounce');
 const NodeText = require('./NodeText').default;
 const BackgroundSphere = require('./BackgroundSphere').default;
@@ -21,8 +22,7 @@ const Fog = require('./Fog').default;
   const camera = new THREE.PerspectiveCamera();
   const clock = new THREE.Clock();
   const loader = new THREE.FontLoader();
-
-
+  const controls = new THREE.OrbitControls(camera);
 
   camera.far = 50000;
   camera.setFocalLength(24);
@@ -45,16 +45,14 @@ const Fog = require('./Fog').default;
   var mouseY = 0;
 
   camera.rotation.order = "YXZ";
-  document.addEventListener("touchstart",mouseMove,false);
-  document.addEventListener("touchmove",mouseMove,false);
-  document.addEventListener('touchend',mouseMove,false);
-  document.addEventListener( "mousemove", mouseMove, false );
+  // document.addEventListener("touchstart",mouseMove,false);
+  // document.addEventListener("touchmove",mouseMove,false);
+  // document.addEventListener("touchend",mouseMove,false);
+  // document.addEventListener( "mousemove", mouseMove, false );
   function mouseMove( event ) {
-    // console.log('helapsdkasdas');
-    mouseX = - ( event.clientX / renderer.domElement.clientWidth ) * 2 + 1;
+  mouseX = - ( event.clientX / renderer.domElement.clientWidth ) * 2 + 1;
     mouseY = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
     // console.log(camera.rotation.x + " " + camera.rotation.y);
-    // console.log(camera.rotation.x);
     event.preventDefault();
     camera.rotation.x = mouseY / scale;
     camera.rotation.y = mouseX / scale;
@@ -69,6 +67,7 @@ const Fog = require('./Fog').default;
     nodeText.render(time);
     tathvaText.render(time);
     renderer.render(scene, camera);
+    
   };
   const renderLoop = () => {
     render();
@@ -94,10 +93,11 @@ const Fog = require('./Fog').default;
       nodeText.transform();
     });
   };
-
+  
   // ==========
   // Initialize
   //
+
   const init = () => {
     let light = new THREE.PointLight(0xffffff, 0.2);
     light.position.z = 1000;
@@ -114,6 +114,8 @@ const Fog = require('./Fog').default;
       camera.lookAt(new THREE.Vector3());
       clock.start();
 
+      document.addEventListener('mousemove',mouseMove,false);
+      canvas.addEventListener('touchmove',mouseMove,false);
       loader.load('./font/Lato.json', (font) => {
         nodeText.createObj(font);
   
@@ -148,11 +150,9 @@ const Fog = require('./Fog').default;
             descText.bgObj.position.y = innerHeight/4.5 - 150.0;
             descText.bgObj.position.z = 1;
           }
-          
+  
       );
       
-
-
       on();
       resizeWindow();
       renderLoop();
