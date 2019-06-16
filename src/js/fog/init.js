@@ -72,8 +72,12 @@ const render = () => {
 
 };
 const renderLoop = () => {
-  render();
-  requestAnimationFrame(renderLoop);
+  if(window.pageYOffset < 100) {
+      render();
+      requestAnimationFrame(renderLoop);
+  } else {
+      window.setTimeout(renderLoop, 1000);
+  }
 };
 const resizeCamera = () => {
   camera.aspect = resolution.x / resolution.y;
