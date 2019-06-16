@@ -21,7 +21,7 @@ export default class Fog {
         value: null
       }
     };
-    this.num = 10;
+    this.num = 5;
     this.obj;
   }
   createObj(tex) {
@@ -41,7 +41,6 @@ export default class Fog {
       let y = randn_bm()*50;
       let z = randn_bm()*10-100.0;
 
-      console.log("i="+i+": "+x+","+y);
       instancePositions.setXYZ(
         i,
         x, y, z
