@@ -11,7 +11,7 @@ export default class TathvaText {
             "Designate yourself as the supporter \n"+
             "of this techno-managerial festival", {
                 font: font,
-                size: innerWidth * 0.02,
+                size: innerWidth * 0.025,
                 height: 0,
                 bevelEnabled: false,
                 curveSegments: 1
