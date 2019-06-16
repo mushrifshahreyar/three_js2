@@ -7,6 +7,14 @@ export default class TathvaText {
             time: {
                 type: 'f',
                 value: 0
+            },
+            width: {
+                type: 'f',
+                value: 0
+            },
+            height: {
+                type: 'f',
+                value: 0
             }
         };
     }
@@ -28,6 +36,9 @@ export default class TathvaText {
             blending: THREE.NormalBlending
         });
         this.obj = new THREE.Mesh(geometry, material);
+        let box = new THREE.Box3().setFromObject(this.obj);
+        this.uniforms.width.value = box.getSize().x;
+        this.uniforms.height.value = box.getSize().y;
 
     }
     render(time) {

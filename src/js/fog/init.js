@@ -123,8 +123,12 @@ const init = () => {
       elems.map((e, i) => {
         scene.add(e);
         if (innerWidth / innerHeight > 4 / 3) {
-          e.position.set(-innerWidth / 2.2, -100, -15);
-          e.rotateY(0.1);
+          var box = new THREE.Box3().setFromObject(e);
+          let t = new THREE.Vector3();
+          box.getCenter(t);
+          let x =  - innerWidth*0.59;
+          let y = - innerHeight * 0.2;
+          e.position.set(x, y, -15)
         } else {
           var box = new THREE.Box3().setFromObject(e);
           let y = - innerHeight * 0.6;
