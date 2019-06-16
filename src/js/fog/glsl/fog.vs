@@ -32,7 +32,7 @@ void main(void) {
   vec3 updatePosition = instancePosition + moveRise+ rotatePosition;
 
   float hue_time = sin(time+position.x/10.0)*0.05;
-  float hue = 0.6 + instancePosition.x/5000.0;
+  float hue = 0.02 + instancePosition.x/5000.0;
   // 0.6: blue
 
   vec3 hsv = vec3(hue, 1.0, 1.0);
