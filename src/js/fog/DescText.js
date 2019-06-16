@@ -11,16 +11,18 @@ export default class TathvaText {
             "Designate yourself as the supporter \n"+
             "of this techno-managerial festival", {
                 font: font,
-                size: innerWidth * 0.03,
+                size: innerWidth * 0.02,
                 height: 0,
                 bevelEnabled: false,
                 curveSegments: 1
             });
-        this.obj = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial(0xffffff));
+        this.obj = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+            color: 0x333333
+        }));
 
         var plane = new THREE.PlaneGeometry(1100, 700, 1, 1);
         this.bgObj = new THREE.Mesh(plane, new THREE.MeshBasicMaterial( {
-            color: 0x07608c,
+            color: 0xffffff,
             transparent: true,
             opacity: 0.8
         }));
