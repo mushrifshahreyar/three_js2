@@ -1,4 +1,5 @@
 const THREE = require('three');
+const OrbitControls = require('three-orbitcontrols')
 const debounce = require('js-util/debounce');
 const NodeText = require('./NodeText').default;
 const BackgroundSphere = require('./BackgroundSphere').default;
@@ -20,8 +21,7 @@ const Fog = require('./Fog').default;
   const camera = new THREE.PerspectiveCamera();
   const clock = new THREE.Clock();
   const loader = new THREE.FontLoader();
-
-  // const composer = new THREE.EffectComposer(renderer);
+  const controls = new THREE.OrbitControls(camera);
 
   camera.far = 50000;
   camera.setFocalLength(24);
@@ -46,13 +46,11 @@ const Fog = require('./Fog').default;
   // document.addEventListener("touchstart",mouseMove,false);
   // document.addEventListener("touchmove",mouseMove,false);
   // document.addEventListener("touchend",mouseMove,false);
-  document.addEventListener( "mousemove", mouseMove, false );
+  // document.addEventListener( "mousemove", mouseMove, false );
   function mouseMove( event ) {
-    // console.log('helapsdkasdas');
-    mouseX = - ( event.clientX / renderer.domElement.clientWidth ) * 2 + 1;
+  mouseX = - ( event.clientX / renderer.domElement.clientWidth ) * 2 + 1;
     mouseY = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
     // console.log(camera.rotation.x + " " + camera.rotation.y);
-    // console.log(camera.rotation.x);
     event.preventDefault();
     camera.rotation.x = mouseY / scale;
     camera.rotation.y = mouseX / scale;
@@ -66,6 +64,7 @@ const Fog = require('./Fog').default;
     fog.render(time);
     nodeText.render(time);
     renderer.render(scene, camera);
+    
   };
   const renderLoop = () => {
     render();
@@ -91,23 +90,10 @@ const Fog = require('./Fog').default;
       nodeText.transform();
     });
   };
-  // function bloom_effect() {
-  //   // composer = new THREE.EffectComposer(renderer);
-  //   composer.addPass(new THREE.RenderPass(scene,camera));
-  //   const bloomPass = new THREE.BloomPass(1,25,4,250);
-  //   composer.addPass(bloomPass);
-  //   const filmPass = new THREE.FilmPass( 0.35,0.025,648,false);
-  //   composer.addPass(filmPass);
-     
-  // }
-
+  
   // ==========
   // Initialize
   //
-
-  //=========new====
-  
-//=================
 
   const init = () => {
     loadTexs(texsSrc, (loadedTexs) => {
@@ -120,6 +106,8 @@ const Fog = require('./Fog').default;
       camera.lookAt(new THREE.Vector3());
       clock.start();
 
+      document.addEventListener('mousemove',mouseMove,false);
+      canvas.addEventListener('touchmove',mouseMove,false);
       loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', (font) => {
         nodeText.createObj(font);
         bg.createObj();
@@ -146,17 +134,12 @@ const Fog = require('./Fog').default;
             tathvaText.obj.position.set(-x_pos,y_pos,0);
             scene.add(tathvaText.obj);
           }
-          
+  
       );
       
-      //==================
-          // composer.render();
-
-      //====================
       on();
       resizeWindow();
       renderLoop();
-      // bloom_effect();
     });
   }
   init();
