@@ -1,5 +1,3 @@
-import { log } from 'three';
-
 const THREE = require('three');
 export default class TathvaText {
     create_text(font) {
@@ -11,7 +9,7 @@ export default class TathvaText {
             "Designate yourself as the supporter \n"+
             "of this techno-managerial festival", {
                 font: font,
-                size: innerWidth * 0.025,
+                size: Math.log(innerWidth) * 4.0 + 2.0,
                 height: 0,
                 bevelEnabled: false,
                 curveSegments: 1
