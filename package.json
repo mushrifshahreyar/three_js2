@@ -25,6 +25,6 @@
     "glslify-loader": "^2.0.0",
     "js-util": "git://github.com/ykob/js-util.git",
     "raw-loader": "^3.0.0",
-    "three": "^0.105.2"
+    "three": "^0.137.0"
   }
 }
